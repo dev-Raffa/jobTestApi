@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { IProfessor } from "./professor.interface";
-import { ClassEntity } from "src/class/model/class.entity";
+import { ClassEntity } from "../../class/model/class.entity";
 
 @Entity({name:'professors'})
 @Unique(['email'])
@@ -21,7 +21,7 @@ export class ProfessorEntity implements IProfessor{
     phoneNumber: string;
     
     @Column()
-    sbjects?: string;
+    subjects: string[];
 
     @OneToMany(()=> ClassEntity,()=>ProfessorEntity)
     classes?: Array<ClassEntity['id']>;

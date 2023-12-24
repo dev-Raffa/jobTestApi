@@ -1,4 +1,4 @@
-type classType = 'text'| 'vídeo' | 'live'
+export type classType = 'text'| 'vídeo' | 'live'
 
 export interface IClass {
     id: number;

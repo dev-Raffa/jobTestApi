@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ICourse } from "./course.interface";
-import { ClassEntity } from "src/class/model/class.entity";
+import { ClassEntity } from "../../class/model/class.entity";
 
 @Entity({name: "courses"})
 export class CourseEntity implements ICourse {
@@ -17,13 +17,7 @@ export class CourseEntity implements ICourse {
     imageUrl: string;
     
     @Column()
-    category: string;
-    
-    @Column()
-    start_at: Date;
-    
-    @Column()
-    status?: "in progress" | "concluded";
+    category: string;    
     
     @ManyToMany((type)=> ClassEntity  ,(course)=> CourseEntity)
     classes: Array<ClassEntity['id']>;

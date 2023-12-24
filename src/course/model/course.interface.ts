@@ -7,6 +7,4 @@ export interface ICourse {
     imageUrl: string;
     category: string;
     classes: number[];
-    start_at: Date;
-    status?: courseStatus; 
 }

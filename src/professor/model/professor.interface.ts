@@ -4,5 +4,5 @@ export interface IProfessor {
     age: string;
     phoneNumber: string;
     email: string;
-    sbjects?: string;
+    subjects: string[];
 }

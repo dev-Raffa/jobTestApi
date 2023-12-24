@@ -1,7 +1,7 @@
-import { CourseEntity } from "src/course/model/course.entity";
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
-
+import { CourseEntity } from "../../course/model/course.entity";
 import { IUser } from "./user.interface";
+import { ClassEntity } from "../../class/model/class.entity";
 
 @Entity({name: "users"})
 @Unique(['email', 'uuid']) 
@@ -16,11 +16,11 @@ export class userEntity implements IUser {
     password: string;
 
     @Column()
-    status: "active" | "suspense" | "inactive";
-
-    @Column()
-    uuid: string;
+    uuid?: string;
 
     @ManyToMany((type)=> CourseEntity, (user)=> userEntity)
-    courses: Array<CourseEntity['id']>;
+    enrolledInCourses: Array<CourseEntity['id']>;
+
+    @ManyToMany((type)=> ClassEntity, (user)=> userEntity)
+    completedClasses: Array<ClassEntity['id']>;
 }

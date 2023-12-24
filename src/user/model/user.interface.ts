@@ -3,5 +3,6 @@ export interface IUser {
     email: string;
     password: string;
     uuid?: string;
-    courses: Array<number>;
+    enrolledInCourses: Array<number>;
+    completedClasses: Array<number>;
 }
