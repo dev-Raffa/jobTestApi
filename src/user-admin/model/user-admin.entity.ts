@@ -1,8 +1,11 @@
 import { Column, Entity, PrimaryGeneratedColumn, Unique } from "typeorm";
 import { IUserAdmin } from "./user-admin.interface";
 
-@Entity()
+@Entity({name: 'user_admin'})
 export class userAdminEntity implements IUserAdmin {
+    @PrimaryGeneratedColumn()
+    id: number;
+
     @Column()
     user: string;
 

@@ -21,7 +21,7 @@ export class ProfessorEntity implements IProfessor{
     phoneNumber: string;
     
     @Column()
-    sbjects?: string[];
+    sbjects?: string;
 
     @OneToMany(()=> ClassEntity,()=>ProfessorEntity)
     classes?: Array<ClassEntity['id']>;

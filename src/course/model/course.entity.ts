@@ -2,7 +2,7 @@ import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { ICourse } from "./course.interface";
 import { ClassEntity } from "src/class/model/class.entity";
 
-@Entity()
+@Entity({name: "courses"})
 export class CourseEntity implements ICourse {
     @PrimaryGeneratedColumn()
     id: number;
