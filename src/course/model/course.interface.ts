@@ -6,7 +6,7 @@ export interface ICourse {
     description: string;
     imageUrl: string;
     category: string;
-    classes: Array<number>;
+    classes: number[];
     start_at: Date;
     status?: courseStatus; 
 }
