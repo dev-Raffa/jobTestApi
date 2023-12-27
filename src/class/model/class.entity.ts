@@ -1,25 +1,38 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { IClass, classType } from "./class.Interface";
-import { ProfessorEntity } from "../../professor/model/professor.entity";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  Unique,
+} from 'typeorm';
+import { IClass, classType } from './class.Interface';
+import { ProfessorEntity } from '../../professor/model/professor.entity';
+import { CourseEntity } from 'src/course/model/course.entity';
 
-
-@Entity({name: 'classes'})
+@Entity({ name: 'classes' })
+@Unique(['url'])
 export class ClassEntity implements IClass {
-    @PrimaryGeneratedColumn()
-    id: number;
-    
-    @Column()
-    title: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    description: string;
+  @Column()
+  title: string;
 
-    @Column()
-    type: classType;
+  @Column()
+  description: string;
 
-    @Column()
-    url: string;
-    
-    @ManyToOne(()=> ProfessorEntity, ()=> ClassEntity)
-    professor: ProfessorEntity['id'];
+  @Column()
+  type: classType;
+
+  @Column()
+  url: string;
+
+  @ManyToOne(() => ProfessorEntity, (professor) => professor.classes)
+  @JoinColumn({ name: 'professorId', referencedColumnName: 'id' })
+  professor: ProfessorEntity;
+
+  @ManyToOne(() => CourseEntity, (course) => course.classes)
+  @JoinColumn({ name: 'courseId', referencedColumnName: 'id' })
+  course: CourseEntity;
 }

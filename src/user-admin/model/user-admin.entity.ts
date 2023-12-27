@@ -1,17 +1,18 @@
-import { Column, Entity, PrimaryGeneratedColumn, Unique } from "typeorm";
-import { IUserAdmin } from "./user-admin.interface";
+import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import { IUserAdmin } from './user-admin.interface';
 
-@Entity({name: 'user_admin'})
+@Entity({ name: 'user_admin' })
+@Unique(['uuid', 'user'])
 export class userAdminEntity implements IUserAdmin {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    user: string;
+  @Column()
+  user: string;
 
-    @Column()
-    password: string;
+  @Column()
+  password: string;
 
-    @Column()
-    uuid?: string;
+  @Column()
+  uuid?: string;
 }

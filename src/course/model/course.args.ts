@@ -1,17 +1,19 @@
-import { ICourse } from "./course.interface";
-
 export interface courseAddArgs {
-    title: string;
-    description: string;
-    imageUrl: string;
-    category:string;
-    classes: number[];
+  title: string;
+  description: string;
+  imageUrl: string;
+  category: string;
 }
 
-export interface courseSaveArgs extends ICourse {}
+export interface courseSaveArgs extends courseAddArgs {
+  id: number;
+}
 
 export type courseGetOneByIdArgs = number;
 
-export interface courseUpdateArgs extends ICourse {}
+export interface courseUpdateArgs {
+  id: number;
+  args: courseAddArgs;
+}
 
-export type courseDeleteArgs = courseGetOneByIdArgs; 
+export type courseDeleteArgs = courseGetOneByIdArgs;

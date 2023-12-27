@@ -1,24 +1,24 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
-import { ICourse } from "./course.interface";
-import { ClassEntity } from "../../class/model/class.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { ICourse } from './course.interface';
+import { ClassEntity } from '../../class/model/class.entity';
 
-@Entity({name: "courses"})
+@Entity({ name: 'courses' })
 export class CourseEntity implements ICourse {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    title: string;
+  @Column()
+  title: string;
 
-    @Column()
-    description: string;
+  @Column()
+  description: string;
 
-    @Column()
-    imageUrl: string;
-    
-    @Column()
-    category: string;    
-    
-    @ManyToMany((type)=> ClassEntity  ,(course)=> CourseEntity)
-    classes: Array<ClassEntity['id']>;
+  @Column()
+  imageUrl: string;
+
+  @Column()
+  category: string;
+
+  @OneToMany(() => ClassEntity, (lesson) => lesson.course)
+  classes: ClassEntity[];
 }

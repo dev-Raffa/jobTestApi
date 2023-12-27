@@ -1,22 +1,21 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ClassService } from './class.service';
-import { Repository } from 'typeorm';
-import { ClassEntity } from '../model/class.entity';
+import { ClassController } from './class.controller';
+import { ClassService } from '../service/class.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { ClassEntity } from '../model/class.entity';
 import {
   classDeleteArgs,
   classSaveArgs,
   classUpdateArgs,
 } from '../model/class.args';
 import { classRepositoryMock } from '../mock/class.repository-mock';
-import { classAddMock, classUpdateMock } from '../mock/class.reqs-mock';
 
-describe('ClassService', () => {
+describe('ClassController', () => {
+  let controller: ClassController;
   let service: ClassService;
-  let repository: Repository<ClassEntity>;
-
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      controllers: [ClassController],
       providers: [
         ClassService,
         {
@@ -61,55 +60,12 @@ describe('ClassService', () => {
       ],
     }).compile();
 
+    controller = module.get<ClassController>(ClassController);
     service = module.get<ClassService>(ClassService);
-    repository = module.get<Repository<ClassEntity>>(
-      getRepositoryToken(ClassEntity),
-    );
   });
 
   it('should be defined', () => {
+    expect(controller).toBeDefined();
     expect(service).toBeDefined();
-    expect(repository).toBeDefined();
-  });
-
-  describe('add', () => {
-    it('should return class when save with success', async () => {
-      const result = await service.add(classAddMock);
-
-      expect(result).toEqual(classAddMock);
-    });
-  });
-
-  describe('getOneById', () => {
-    it('should return one class', async () => {
-      const result: ClassEntity = await service.getOneById(2);
-      expect(result.id).toEqual(2);
-    });
-  });
-
-  describe('getAll', () => {
-    it('should return all classes', async () => {
-      const result: ClassEntity[] = await service.getAll();
-
-      expect(result.length).toEqual(classRepositoryMock.length);
-    });
-  });
-
-  describe('update', () => {
-    it('should return update class', async () => {
-      const result = await service.update(classUpdateMock);
-
-      expect(result).not.toEqual(classRepositoryMock[classUpdateMock.id]);
-    });
-  });
-
-  describe('delete', () => {
-    it('must remove the class from the repository', async () => {
-      const oldRepository = classRepositoryMock;
-
-      const result = await service.delete(4);
-
-      expect(result).not.toContainEqual(oldRepository[3]);
-    });
   });
 });

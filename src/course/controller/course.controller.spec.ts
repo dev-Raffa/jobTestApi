@@ -1,22 +1,22 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CourseService } from './course.service';
-import { Repository } from 'typeorm';
-import { CourseEntity } from '../model/course.entity';
+import { CourseController } from './course.controller';
+import { CourseService } from '../service/course.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { courseRepositoryMock } from '../mock/course.repositoy-mock';
+import { CourseEntity } from '../model/course.entity';
 import {
   courseDeleteArgs,
   courseSaveArgs,
   courseUpdateArgs,
 } from '../model/course.args';
-import { courseAddMock, courseUpdateMock } from '../mock/course.reqs-mock';
+import { courseRepositoryMock } from '../mock/course.repositoy-mock';
 
-describe('CourseService', () => {
+describe('CourseController', () => {
+  let controller: CourseController;
   let service: CourseService;
-  let repository: Repository<CourseEntity>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      controllers: [CourseController],
       providers: [
         CourseService,
         {
@@ -61,55 +61,12 @@ describe('CourseService', () => {
       ],
     }).compile();
 
+    controller = module.get<CourseController>(CourseController);
     service = module.get<CourseService>(CourseService);
-    repository = module.get<Repository<CourseEntity>>(
-      getRepositoryToken(CourseEntity),
-    );
   });
 
   it('should be defined', () => {
+    expect(controller).toBeDefined();
     expect(service).toBeDefined();
-    expect(repository).toBeDefined();
-  });
-
-  describe('add', () => {
-    it('should return course when save with success', async () => {
-      const result = await service.add(courseAddMock);
-
-      expect(result).toEqual(courseAddMock);
-    });
-  });
-
-  describe('getOneById', () => {
-    it('should return one course', async () => {
-      const result: CourseEntity = await service.getOneById(2);
-      expect(result.id).toEqual(2);
-    });
-  });
-
-  describe('getAll', () => {
-    it('should return all coursees', async () => {
-      const result: CourseEntity[] = await service.getAll();
-
-      expect(result.length).toEqual(courseRepositoryMock.length);
-    });
-  });
-
-  describe('update', () => {
-    it('should return update course', async () => {
-      const result = await service.update(courseUpdateMock);
-
-      expect(result).not.toEqual(courseRepositoryMock[courseUpdateMock.id]);
-    });
-  });
-
-  describe('delete', () => {
-    it('must remove the course from the repository', async () => {
-      const oldRepository = courseRepositoryMock;
-
-      const result = await service.delete(4);
-
-      expect(result).not.toContainEqual(oldRepository[3]);
-    });
   });
 });

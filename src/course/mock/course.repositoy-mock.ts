@@ -1,12 +1,11 @@
-import { CourseEntity } from "../model/course.entity";
+import { ICourse } from '../model/course.interface';
 
-export const courseRepositoryMock: CourseEntity[] = [
-    {
-        id:1,
-        title:'Lógica de programação',
-        description:"",
-        category:"",
-        imageUrl:'',
-        classes:[],
-    }
-]
+export const courseRepositoryMock: ICourse[] = [
+  {
+    id: 1,
+    title: 'Curso de Algorítmos',
+    description: '',
+    category: 'TI',
+    imageUrl: '',
+  },
+];

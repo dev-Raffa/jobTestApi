@@ -1,9 +1,9 @@
-import { userAdminEntity } from "../model/user-admin.entity";
+import { userAdminEntity } from '../model/user-admin.entity';
 
 export const userAdminRepositoryMock: userAdminEntity[] = [
-    {   
-        id:1,
-        user:'Admin',
-        password:'admin123'
-    }
-]
+  {
+    id: 1,
+    user: 'Admin',
+    password: 'admin123',
+  },
+];

@@ -1,3 +1,13 @@
-import { IUserAdmin } from "./user-admin.interface";
+export interface userAdminUpdateArgs {
+  id: number;
+  args: {
+    user: string;
+    password: string;
+    uuid?: string;
+  };
+}
 
-export interface userAdminUpdateArgs extends IUserAdmin {}
+export interface userAdminValidateArgs {
+  user: string;
+  password: string;
+}

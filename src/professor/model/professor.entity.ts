@@ -1,28 +1,34 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from "typeorm";
-import { IProfessor } from "./professor.interface";
-import { ClassEntity } from "../../class/model/class.entity";
+import {
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  Unique,
+} from 'typeorm';
+import { IProfessor } from './professor.interface';
+import { ClassEntity } from '../../class/model/class.entity';
 
-@Entity({name:'professors'})
+@Entity({ name: 'professors' })
 @Unique(['email'])
-export class ProfessorEntity implements IProfessor{
-    @PrimaryGeneratedColumn()
-    id: number;
-    
-    @Column()
-    name: string;
+export class ProfessorEntity implements IProfessor {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    age: string;
+  @Column()
+  name: string;
 
-    @Column()
-    email: string;
-    
-    @Column()
-    phoneNumber: string;
-    
-    @Column()
-    subjects: string[];
+  @Column()
+  age: string;
 
-    @OneToMany(()=> ClassEntity,()=>ProfessorEntity)
-    classes?: Array<ClassEntity['id']>;
+  @Column()
+  email: string;
+
+  @Column()
+  phoneNumber: string;
+
+  @Column()
+  subjects: string;
+
+  @OneToMany(() => ClassEntity, (lesson) => lesson.professor)
+  classes: ClassEntity[];
 }

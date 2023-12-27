@@ -1,17 +1,23 @@
-import { IClass, classType } from "./class.Interface";
+import { classType } from './class.Interface';
 
 export interface classAddArgs {
-    title: string;
-    description: string;
-    type: classType;
-    url: string;
-    professor: number;
+  title: string;
+  description: string;
+  type: classType;
+  url: string;
+  professorId?: number;
+  cursoId?: number;
 }
 
-export interface classSaveArgs extends IClass {}
+export interface classSaveArgs extends classAddArgs {
+  id: number;
+}
 
 export type classGetOneByIdArgs = number;
 
-export interface classUpdateArgs extends IClass {}
+export interface classUpdateArgs {
+  id: number;
+  args: classAddArgs;
+}
 
-export type classDeleteArgs = classGetOneByIdArgs; 
+export type classDeleteArgs = classGetOneByIdArgs;
