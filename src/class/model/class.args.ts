@@ -1,4 +1,4 @@
-import { classType } from './class.Interface';
+import { classType } from 'src/class/model/class.interface';
 
 export interface classAddArgs {
   title: string;
