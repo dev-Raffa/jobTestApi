@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
   Unique,
 } from 'typeorm';
-import { IClass, classType } from 'src/class/model/class.Interface';
+import { IClass, classType } from 'src/class/model/class.interface';
 import { ProfessorEntity } from '../../professor/model/professor.entity';
 import { CourseEntity } from 'src/course/model/course.entity';
 
