@@ -13,6 +13,6 @@ export class userAdminEntity implements IUserAdmin {
   @Column()
   password: string;
 
-  @Column()
+  @Column({ nullable: true })
   uuid?: string;
 }

@@ -1,11 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { userAdminEntity } from '../model/user-admin.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
+  userAdminAddArgs,
   userAdminUpdateArgs,
   userAdminValidateArgs,
 } from '../model/user-admin.args';
+import { validateResp } from '../model/user-admin.resp';
 
 @Injectable()
 export class UserAdminService {
@@ -13,6 +15,10 @@ export class UserAdminService {
     @InjectRepository(userAdminEntity)
     private repository: Repository<userAdminEntity>,
   ) {}
+
+  async save(args: userAdminAddArgs): Promise<userAdminEntity> {
+    return await this.repository.save(args);
+  }
 
   async get(): Promise<userAdminEntity> {
     const userAdmin = await this.repository.find();
@@ -32,10 +38,18 @@ export class UserAdminService {
     return userAdmin[0];
   }
 
-  async validate(args: userAdminValidateArgs): Promise<userAdminEntity> {
-    return this.repository.findOneBy({
+  async validate(args: userAdminValidateArgs): Promise<validateResp> {
+    const verific = await this.repository.findOneBy({
       user: args.user,
       password: args.password,
     });
+    if (verific) {
+      return {
+        message: 'Success',
+        user: verific,
+      };
+    } else {
+      throw new UnauthorizedException();
+    }
   }
 }

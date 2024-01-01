@@ -1,3 +1,8 @@
+export interface userAdminAddArgs {
+  user: string;
+  password: string;
+}
+
 export interface userAdminUpdateArgs {
   id: number;
   args: {
@@ -7,7 +12,4 @@ export interface userAdminUpdateArgs {
   };
 }
 
-export interface userAdminValidateArgs {
-  user: string;
-  password: string;
-}
+export interface userAdminValidateArgs extends userAdminAddArgs {}
