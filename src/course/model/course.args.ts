@@ -11,9 +11,6 @@ export interface courseSaveArgs extends courseAddArgs {
 
 export type courseGetOneByIdArgs = number;
 
-export interface courseUpdateArgs {
-  id: number;
-  args: courseAddArgs;
-}
+export interface courseUpdateArgs extends courseAddArgs {}
 
 export type courseDeleteArgs = courseGetOneByIdArgs;

@@ -8,7 +8,4 @@ export const courseAddMock: courseAddArgs = {
   imageUrl: 'https://www.youtube.com/watch?v=8mei6uVttho',
 };
 
-export const courseUpdateMock: courseUpdateArgs = {
-  id: 1,
-  args: courseAddMock,
-};
+export const courseUpdateMock: courseUpdateArgs = courseAddMock;

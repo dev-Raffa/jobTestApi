@@ -29,15 +29,14 @@ export class CourseService {
     return await this.repository.find();
   }
 
-  async update({ id, args }: courseUpdateArgs): Promise<CourseEntity> {
-    await this.repository.update(id, {
-      ...(args.title && { title: args.title }),
-      ...(args.description && { description: args.description }),
-      ...(args.category && { category: args.category }),
-      ...(args.imageUrl && { imageUrl: args.imageUrl }),
-    });
+  async update(id: number, args: courseUpdateArgs): Promise<CourseEntity> {
+    let course = await this.repository.findOneBy({ id: id });
 
-    return await this.repository.findOneBy({ id: id });
+    course = { ...course, ...args };
+
+    return await this.repository.update(id, course).then(() => {
+      return course;
+    });
   }
 
   async delete(args: courseDeleteArgs) {

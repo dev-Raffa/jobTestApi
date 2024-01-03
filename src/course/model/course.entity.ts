@@ -19,6 +19,9 @@ export class CourseEntity implements ICourse {
   @Column()
   category: string;
 
+  @Column()
+  highlight: boolean;
+
   @OneToMany(() => ClassEntity, (lesson) => lesson.course)
   classes: ClassEntity[];
 }

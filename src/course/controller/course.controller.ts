@@ -32,9 +32,9 @@ export class CourseController {
   @Patch(':id')
   async update(
     @Param('id') id: string,
-    @Body() updatecourse: courseUpdateArgs['args'],
+    @Body() updatecourse: courseUpdateArgs,
   ) {
-    return await this.service.update({ id: +id, args: updatecourse });
+    return await this.service.update(+id, updatecourse);
   }
 
   @Delete(':id')
