@@ -39,3 +39,8 @@ lerna-debug.log*
 
 #http requests
 requests-http/
+
+#replit
+*.replit
+replit.*
+.replit
