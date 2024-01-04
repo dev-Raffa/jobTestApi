@@ -5,7 +5,7 @@ import {
   Get,
   Param,
   Patch,
-  Delete,
+  Delete
 } from '@nestjs/common';
 import { CourseService } from '../service/course.service';
 import { courseAddArgs, courseUpdateArgs } from '../model/course.args';
@@ -32,7 +32,7 @@ export class CourseController {
   @Patch(':id')
   async update(
     @Param('id') id: string,
-    @Body() updatecourse: courseUpdateArgs,
+    @Body() updatecourse: courseUpdateArgs
   ) {
     return await this.service.update(+id, updatecourse);
   }

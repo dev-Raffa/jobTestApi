@@ -6,15 +6,14 @@ import {
   courseAddArgs,
   courseDeleteArgs,
   courseGetOneByIdArgs,
-  courseUpdateArgs,
+  courseUpdateArgs
 } from '../model/course.args';
-import { ClassEntity } from 'src/class/model/class.entity';
 
 @Injectable()
 export class CourseService {
   constructor(
     @InjectRepository(CourseEntity)
-    private repository: Repository<CourseEntity>,
+    private repository: Repository<CourseEntity>
   ) {}
 
   async add(args: courseAddArgs): Promise<CourseEntity> {
@@ -43,12 +42,12 @@ export class CourseService {
     return await this.repository.delete(args);
   }
 
-  async getClasses(id: number): Promise<ClassEntity[]> {
+  async getClasses(id: number): Promise<CourseEntity> {
     const resp: CourseEntity = await this.repository.findOne({
       where: { id: id },
-      relations: ['classes'],
+      relations: ['classes']
     });
 
-    return resp.classes;
+    return resp;
   }
 }
