@@ -9,7 +9,11 @@ async function bootstrap() {
         'https://job-test-app-rafaelconceicao.vercel.app',
         'https://job-test-app-git-main-rafaelconceicao.vercel.app',
       ],
-      methods: 'GET, HEAD, PUT, PATCH, POST, DELETE,',
+      allowedHeaders: ['Content-Type', 'Accept'],
+      methods: 'GET, HEAD, PUT, PATCH, POST, DELETE, OPTIONS',
+      credentials: true,
+      optionsSuccessStatus: 200,
+      preflightContinue: true,
     },
   });
   await app.listen(3000);
