@@ -11,9 +11,6 @@ async function bootstrap() {
       ],
       allowedHeaders: ['Content-Type', 'Accept'],
       methods: 'GET, HEAD, PUT, PATCH, POST, DELETE, OPTIONS',
-      credentials: true,
-      optionsSuccessStatus: 200,
-      preflightContinue: true,
     },
   });
   await app.listen(3000);
