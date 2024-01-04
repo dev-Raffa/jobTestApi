@@ -13,6 +13,7 @@ async function bootstrap() {
       methods: 'GET, HEAD, PUT, PATCH, POST, DELETE,',
       credentials: true,
       optionsSuccessStatus: 200,
+      preflightContinue: true,
     },
   });
   await app.listen(3000);
