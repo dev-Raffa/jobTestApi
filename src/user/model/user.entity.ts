@@ -3,7 +3,7 @@ import {
   Entity,
   ManyToMany,
   PrimaryGeneratedColumn,
-  Unique,
+  Unique
 } from 'typeorm';
 import { CourseEntity } from '../../course/model/course.entity';
 import { IUser } from './user.interface';

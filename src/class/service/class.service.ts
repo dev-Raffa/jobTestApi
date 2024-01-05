@@ -6,14 +6,14 @@ import {
   classAddArgs,
   classDeleteArgs,
   classGetOneByIdArgs,
-  classUpdateArgs,
+  classUpdateArgs
 } from '../model/class.args';
 
 @Injectable()
 export class ClassService {
   constructor(
     @InjectRepository(ClassEntity)
-    private repository: Repository<ClassEntity>,
+    private repository: Repository<ClassEntity>
   ) {}
 
   async add(args: classAddArgs): Promise<ClassEntity> {
@@ -35,7 +35,7 @@ export class ClassService {
       ...(args.type && { type: args.type }),
       ...(args.url && { url: args.url }),
       ...(args.professorId && { professorId: args.professorId }),
-      ...(args.cursoId && { cursoId: args.cursoId }),
+      ...(args.cursoId && { cursoId: args.cursoId })
     });
 
     return await this.repository.findOneBy({ id: id });

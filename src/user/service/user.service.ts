@@ -7,14 +7,14 @@ import {
   userDeleteArgs,
   userGetOneByIdArgs,
   userUpdateArgs,
-  userValidateArgs,
+  userValidateArgs
 } from '../model/user.args';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(userEntity)
-    private repository: Repository<userEntity>,
+    private repository: Repository<userEntity>
   ) {}
 
   async add(args: userAddArgs): Promise<userEntity> {
@@ -35,9 +35,9 @@ export class UserService {
       ...(args.password && { password: args.password }),
       ...(args.uuid && { uuid: args.uuid }),
       ...(args.enrolledInCourses && {
-        enrolledInCourses: args.enrolledInCourses,
+        enrolledInCourses: args.enrolledInCourses
       }),
-      ...(args.completedClasses && { completedClasses: args.completedClasses }),
+      ...(args.completedClasses && { completedClasses: args.completedClasses })
     });
 
     return await this.repository.findOneBy({ id: id });
@@ -50,7 +50,7 @@ export class UserService {
   async validate(args: userValidateArgs): Promise<userEntity> {
     return this.repository.findOneBy({
       email: args.email,
-      password: args.password,
+      password: args.password
     });
   }
 }

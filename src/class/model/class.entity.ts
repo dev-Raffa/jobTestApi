@@ -4,7 +4,7 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
-  Unique,
+  Unique
 } from 'typeorm';
 import { IClass, classType } from 'src/class/model/class.interface';
 import { ProfessorEntity } from '../../professor/model/professor.entity';

@@ -5,7 +5,7 @@ import {
   Param,
   Patch,
   Post,
-  Delete,
+  Delete
 } from '@nestjs/common';
 import { ClassService } from '../service/class.service';
 import { classAddArgs, classUpdateArgs } from '../model/class.args';
@@ -32,7 +32,7 @@ export class ClassController {
   @Patch(':id')
   update(
     @Param('id') id: string,
-    @Body() updateClass: classUpdateArgs['args'],
+    @Body() updateClass: classUpdateArgs['args']
   ) {
     return this.service.update({ id: +id, args: updateClass });
   }
