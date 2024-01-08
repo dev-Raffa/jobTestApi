@@ -1,73 +1,69 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Doc Course API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Esta API foi desenvolvida como parte do desafio de código elaborado no processo seletivo do grupo Doctor.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+### Tecnologias Adotadas no Projeto:
 
-## Description
+##### NestJS:
+A API foi construída utilizando o framework NestJS, conhecido por oferecer uma arquitetura modular baseada no Angular. Essa escolha, aliada ao suporte ao TypeScript, tem como objetivo facilitar a organização e manutenção do código. O NestJS utiliza o sistema de injeção de dependência, simplificando a gestão de componentes. A presença de uma CLI agiliza o desenvolvimento, fornecendo comandos que possibilitam, por exemplo, a criação rápida da estrutura CRUD para os módulos da aplicação. A ampla capacidade de integração do NestJS com diversas ferramentas também foi um fator determinante.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+##### PostgreSQL:
+Para o armazenamento e gestão das informações dos cursos, professores e dados de acesso dos alunos, optei pela utilização do banco de dados SQL PostgreSQL. Essa escolha foi motivada pela fácil integração e pela disponibilidade de hospedagem na AWS, proporcionando uma solução robusta e escalável.
 
-## Installation
+##### Realtime Database (A Implementar):
+Com a intenção de armazenar e gerenciar o progresso dos alunos nos cursos da plataforma, está prevista a implementação de um banco de dados NoSQL em tempo real. A escolha por essa solução é respaldada pela expectativa de uma maior escalabilidade e um desempenho aprimorado.
 
-```bash
-$ yarn install
-```
+##### CORS:
+A implementação do CORS possibilita o controle da origem das solicitações à API, contribuindo para a segurança e eficiência na comunicação com a aplicação.
 
-## Running the app
+##### Vercel: 
+O deploy da aplicação foi realizado na Vercel. A Vercel disponibiliza uma estrutura de fácil configuração e manutenção. A aplicação encontra-se disponível através da rota [https://job-test-api-kr1d.vercel.app/](https://job-test-api-kr1d.vercel.app/).
 
-```bash
-# development
-$ yarn run start
+-----
 
-# watch mode
-$ yarn run start:dev
+## Funcionalidades (Disponíveis):
 
-# production mode
-$ yarn run start:prod
-```
+#### Course
+ - CRUD de cursos através do endpoint /course
+   - `GET/course` - Retorna um array com a informação de todos os cursos disponíveis na base de dados da API.
+   - `GET/course/{id}` - Retorna as informações do curso especificado através do parâmetro {id}.
+   - `GET/course/{id}/classes` - Retorna as informações do curso especificado junto com a lista de aulas disponíveis.
+   - `PATCH/course/{id}` - Permite a atualização dos dados do curso especificado via id.
+   - `POST/course` - Permite a criação de um curso.
+   - `DELETE/course/{id}` - Permite a exclusão de um curso da base de dados do sistema.
 
-## Test
+#### Professors
+ - CRUD de professores
+   - `GET/professor` - Retorna um array com a informação de todos os professores cadastrados na base de dados da API.
+   - `GET/professor/{id}` - Retorna as informações do professor especificado através do parâmetro {id}.
+   - `PATCH/professor/{id}` - Permite a atualização dos dados do professor especificado via id.
+   - `POST/professor` - Permite o cadastro de um professor.
+   - `DELETE/professor/{id}` - Permite a exclusão de um professor da base de dados do sistema.
 
-```bash
-# unit tests
-$ yarn run test
+#### Classes
+ - CRUD de aulas
+   - `PATCH/class/{id}` - Permite a atualização dos dados da aula especificada via id.
+   - `POST/class` - Permite o cadastro de uma aula.
+   - `DELETE/class/{id}` - Permite a exclusão de uma aula da base de dados do sistema.
 
-# e2e tests
-$ yarn run test:e2e
+   * Só é possível acessar uma aula informando o id do professor que a ministra ou o id do curso ao qual ela pertence. Essas informações devem ser passadas no cabeçalho da solicitação.
 
-# test coverage
-$ yarn run test:cov
-```
+#### User
+ - Cadastro e validação dos alunos 
 
-## Support
+#### Admin 
+ - Validação do usuário Admin. 
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+##### Essas funcionalidades já estão disponíveis na aplicação frontend hospedada no endereço [https://job-test-app.vercel.app/](https://job-test-app.vercel.app/). O painel administrativo pode ser acessado através do endereço [https://job-test-app.vercel.app/admin](https://job-test-app.vercel.app/admin).
 
-## Stay in touch
+----------
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Funcionalidades (A Implementar):
 
-## License
+- **Sistema de aulas ao vivo e por texto:** Buscando tornar os cursos mais dinâmicos, estamos trabalhando na melhoria do nosso sistema de aulas, permitindo a possibilidade de ministrar aulas ao vivo e fornecer material de apoio em texto.
 
-Nest is [MIT licensed](LICENSE).
+- **Gestão de usuários do painel administrativo:** Visando permitir que os professores cadastrem suas aulas, agendem aulas ao vivo e disponibilizem novos cursos.
+
+- **Acompanhamento de Progresso do Aluno:** Desenvolvimento do módulo que permitirá o armazenamento e a análise do progresso dos alunos em tempo real, proporcionando uma experiência personalizada de aprendizado.
+
+Esta documentação será atualizada à medida que novas funcionalidades forem implementadas e aprimoramentos forem realizados.
